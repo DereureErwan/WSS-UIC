@@ -4,7 +4,6 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 import xml.etree.ElementTree as ET
 import networkx as nx
-import geopandas as gpd
 from shapely.geometry import Polygon
 from shapely.ops import triangulate
 import random
@@ -21,14 +20,11 @@ warnings.filterwarnings("ignore")
 
 
 class Scribble:
-    def __init__(
-        self, filename, percent, split, show=False
-    ):
+    def __init__(self, filename, percent, split, show=False):
         self.split = split
         self.filename = filename
         self.percent = percent
         self.show = show
-        self.path_camelyon = path_camelyon
 
         if self.split == "train":
             self.path_annotations = path_annotations_train
@@ -129,7 +125,7 @@ class Scribble:
                 for u in range(polygon.shape[0]):
                     x, y = polygon.loc[u]["geometry"].exterior.xy
                     axs.fill(x, y, alpha=0.5, color=np.random.randint(0, 255, 3) / 255)
-                plt.axis('off')
+                plt.axis("off")
                 plt.show()
             return polygon
         else:
@@ -206,12 +202,11 @@ class Scribble:
         distance = np.insert(distance, 0, 0) / distance[-1]
         # Interpolation for different methods:
         alpha = np.linspace(0, 1, nb_)
-        interpolator = CubicSpline(distance, coordinates) 
+        interpolator = CubicSpline(distance, coordinates)
         interpolated_points = interpolator(alpha)
         return interpolated_points, contour
 
     def scribble(self, annotation, ps=ps, ov=0.8):
-        
         """
         Input: the annotation of the healthy or tumor region
 
@@ -264,10 +259,23 @@ class Scribble:
         )
         arr = interpolated_points
         nb = arr.shape[0]
-        remove = int((nb * self.percent)/2)
+        remove = int((nb * self.percent) / 2)
         scribble = arr[remove : nb - remove, :]
         length = np.sum(np.sqrt(np.sum((arr[:-1] - arr[1:]) ** 2, axis=1)))
         nb_patches = int(length / (ps * (1 - ov))) + 1
         indices = np.linspace(1, scribble.shape[0], nb_patches).astype(int) - 1
         arr = scribble[indices]
         return arr, contour, scribble, coordinates
+
+    def manual_scribble(self, interpolated_points, ps=ps, ov=0.8):
+        if interpolated_points.shape[0] > 0:
+            arr = interpolated_points
+            nb = arr.shape[0]
+            remove = int((nb * self.percent) / 2)
+            scribble = arr[remove : nb - remove, :]
+            length = np.sum(np.sqrt(np.sum((arr[:-1] - arr[1:]) ** 2, axis=1)))
+            nb_patches = int(length / (ps * (1 - ov))) + 1
+            indices = np.linspace(1, scribble.shape[0], nb_patches).astype(int) - 1
+            arr = scribble[indices]
+
+            return scribble

@@ -1,9 +1,8 @@
 import os
 
-path_preds = os.getenv('PATH_ZEUS')
-path_preds = '/pasteur/zeus/projets/p02/bia/ahabis/CAMELYON/'
-path_slide_tumor_train = os.path.join(path_preds, "train/tumor")
-path_slide_tumor_test = os.path.join(path_preds, "test/tumor")
+path_preds = "/Users/erwan/Data/Dofus"
+path_slide_tumor_train = os.path.join(path_preds, "train")
+path_slide_tumor_test = os.path.join(path_preds, "test")
 path_annotations_train = os.path.join(path_preds, "train/annotations")
 path_annotations_test = os.path.join(path_preds, "test/annotations")
 path_dataframe_train = os.path.join(path_preds, "dataframe_train.csv")
@@ -19,18 +18,19 @@ path_heatmaps = os.path.join(path_preds, "heatmaps")
 path_segmaps = os.path.join(path_preds, "segmaps")
 path_metric_tables = os.path.join(path_preds, "metric_tables")
 path_weights = os.path.join(path_preds, "weights")
-path_prediction_patches = os.path.join(path_preds, 'patches_prediction')
-path_prediction_patches_correction = os.path.join(path_preds, 'patches_prediction_correction')
-path_uncertainty_patches = os.path.join(path_preds, 'patches_uncertainty')
-
+path_prediction_patches = os.path.join(path_preds, "patches_prediction")
+path_prediction_patches_correction = os.path.join(
+    path_preds, "patches_prediction_correction"
+)
+path_uncertainty_patches = os.path.join(path_preds, "patches_uncertainty")
 
 
 optimal_threshold = 0.6
 percentage_scribbled_regions = 0.1
-ov = 0.7 #### overlap
-ps = 512 #### patch_size
-bs = 16 #### batch_size
-n_passes = 20 ## monte_carlo predictions
+ov = 0.7  #### overlap
+ps = 128  #### patch_size
+bs = 16  #### batch_size
+n_passes = 20  ## monte_carlo predictions
 
 test_set = [
     "test_040",
@@ -56,7 +56,8 @@ test_set = [
     "test_116",
     "test_117",
     "test_010",
-    "test_011"]
+    "test_011",
+]
 
 
 val_set = [

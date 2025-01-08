@@ -64,6 +64,7 @@ else:
 filenames = os.listdir(path_patches)
 i_s = np.arange(len(filenames))
 
+
 def create_heatmap(
     args,
     colormap_uncertainty=plt.cm.PiYG,
