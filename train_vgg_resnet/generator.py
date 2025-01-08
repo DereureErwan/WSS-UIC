@@ -8,6 +8,7 @@ from torchvision import transforms
 from PIL import ImageFile, Image
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
@@ -35,7 +36,13 @@ class CustomImageDataset(Dataset):
     def __getitem__(self, idx):
         filename = self.dataframe.loc[idx]["filename"]
         label = float(filename.split("_")[-1].split(".")[0])
-        image = np.asarray(Image.open(os.path.join(self.path_image, filename)))
+        # print(label)
+        # print(filename)
+        image = np.asarray(
+            Image.open(os.path.join(self.path_image, filename)).convert("RGB")
+        )
+        # image = plt.imread(os.path.join(self.path_image, filename))
+        # print(image.shape)
         if self.augmenter_bool:
             image = self.augmenter(image)
         image = np.transpose(image, (-1, 0, 1)) / 255
@@ -53,12 +60,8 @@ dataset_test = CustomImageDataset(
     path_image=path_patches_scribbles_test, augmenter_bool=True
 )
 
-loader_train = DataLoader(
-    batch_size=bs, dataset=dataset_train, num_workers=32, shuffle=True
-)
+loader_train = DataLoader(batch_size=bs, dataset=dataset_train, shuffle=True)
 
-loader_test = DataLoader(
-    batch_size=bs, dataset=dataset_test, num_workers=32, shuffle=False
-)
+loader_test = DataLoader(batch_size=bs, dataset=dataset_test, shuffle=False)
 
 dataloaders = {"train": loader_train, "test": loader_test}

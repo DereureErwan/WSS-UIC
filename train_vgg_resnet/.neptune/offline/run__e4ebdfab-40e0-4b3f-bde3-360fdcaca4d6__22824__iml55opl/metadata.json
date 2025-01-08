@@ -1,0 +1,10 @@
+{
+  "mode": "offline",
+  "containerId": "e4ebdfab-40e0-4b3f-bde3-360fdcaca4d6",
+  "containerType": "run",
+  "structureVersion": 3,
+  "os": "macOS-10.15.7-x86_64-i386-64bit",
+  "pythonVersion": "3.10.0 (default, Mar  3 2022, 03:57:21) [Clang 12.0.0 ]",
+  "neptuneClientVersion": "1.13.0",
+  "createdAt": "2024-12-29T20:29:28.877249+00:00"
+}
