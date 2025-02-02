@@ -6,7 +6,7 @@
 
 ## 1. Donwload model weights
 
-You can download the model weights here[https://huggingface.co/edereure/dofus]
+You can download the model weights [here](https://huggingface.co/edereure/dofus)
 
 And place them at the location `path_weights` specified in `config.py`
 
