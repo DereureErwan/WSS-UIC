@@ -1,6 +1,6 @@
 import os
 
-path_preds = "/Users/erwan/Data/Dofus"
+path_preds = "/Users/erwandereure/Data/Dofus"
 path_slide_tumor_train = os.path.join(path_preds, "train")
 path_slide_tumor_test = os.path.join(path_preds, "test")
 path_annotations_train = os.path.join(path_preds, "train/annotations")
@@ -24,6 +24,8 @@ path_prediction_patches_correction = os.path.join(
 )
 path_uncertainty_patches = os.path.join(path_preds, "patches_uncertainty")
 
+path_prediction_test = os.path.join(path_preds, "path_prediction_test")
+
 
 optimal_threshold = 0.6
 percentage_scribbled_regions = 0.1
@@ -32,57 +34,5 @@ ps = 128  #### patch_size
 bs = 16  #### batch_size
 n_passes = 20  ## monte_carlo predictions
 
-test_set = [
-    "test_040",
-    "test_090",
-    "test_026",
-    "test_104",
-    "test_027",
-    "test_002",
-    "test_029",
-    "test_001",
-    "test_061",
-    "test_108",
-    "test_110",
-    "test_004",
-    "test_092",
-    "test_066",
-    "test_122",
-    "test_074",
-    "test_079",
-    "test_097",
-    "test_084",
-    "test_102",
-    "test_116",
-    "test_117",
-    "test_010",
-    "test_011",
-]
 
 
-val_set = [
-    "test_016",
-    "test_068",
-    "test_021",
-    "test_075",
-    "test_113",
-    "test_094",
-    "test_082",
-    "test_105",
-    "test_073",
-    "test_071",
-    "test_121",
-    "test_064",
-    "test_065",
-    "test_069",
-    "test_051",
-    "test_008",
-    "test_033",
-    "test_030",
-    "test_048",
-    "test_052",
-    "test_046",
-    "test_099",
-    "test_038",
-    "test_013",
-]

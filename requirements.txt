@@ -1,0 +1,7 @@
+torch
+numpy==1.26.4
+matplotlib
+tqdm
+torchvision
+typing_extensions
+neptune
